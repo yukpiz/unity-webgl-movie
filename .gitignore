@@ -10,3 +10,5 @@ shoot.userprefs
 *.swp
 .vs/
 .vscode/
+
+Assets/StreamingAssets/
