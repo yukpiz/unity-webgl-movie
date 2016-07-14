@@ -11,6 +11,7 @@ public class MovieController : MonoBehaviour {
         webGLMovieTexture = new WebGLMovieTexture("StreamingAssets/Chrome_ImF.mp4");
         cube.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Diffuse"));
         cube.GetComponent<MeshRenderer>().material.mainTexture = webGLMovieTexture;
+        webGLMovieTexture.Play();
 	}
 	
 	// Update is called once per frame
@@ -52,14 +53,5 @@ public class MovieController : MonoBehaviour {
 
         webGLMovieTexture.loop = isLoop;
         webGLMovieTexture.Play();
-    }
-
-    void OnGUI()
-    {
-        GUI.enabled = webGLMovieTexture.isReady;
-
-        GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Play"))
-            webGLMovieTexture.Play();
     }
 }
