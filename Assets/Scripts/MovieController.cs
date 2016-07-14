@@ -20,4 +20,46 @@ public class MovieController : MonoBehaviour {
             webGLMovieTexture.Update();
         }
 	}
+
+    public void Play()
+    {
+        StartCoroutine("StartMovie", false);
+    }
+
+    public void Stop()
+    {
+        if (webGLMovieTexture.isReady)
+        {
+            webGLMovieTexture.Pause();
+            webGLMovieTexture.Seek(0f);
+        }
+    }
+
+    public void Pause()
+    {
+        if (webGLMovieTexture.isReady)
+        {
+            webGLMovieTexture.Pause();
+        }
+    }
+
+    protected IEnumerator StartMovie(bool isLoop)
+    {
+        while (!webGLMovieTexture.isReady)
+        {
+            yield return null;
+        }
+
+        webGLMovieTexture.loop = isLoop;
+        webGLMovieTexture.Play();
+    }
+
+    void OnGUI()
+    {
+        GUI.enabled = webGLMovieTexture.isReady;
+
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Play"))
+            webGLMovieTexture.Play();
+    }
 }
